@@ -1,34 +1,252 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom scrollbar styles */
+::-webkit-scrollbar {
+  width: 8px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+::-webkit-scrollbar-track {
+  background: rgba(15, 23, 42, 0.1);
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* Custom animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(59, 130, 246, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(59, 130, 246, 0.8);
+  }
+}
+
+.fade-in-up {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.pulse-glow {
+  animation: pulse-glow 2s infinite;
+}
+
+/* Custom gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-text-gold {
+  background: linear-gradient(135deg, #f6ad55 0%, #ed8936 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Custom card styles */
+.glass-card {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Realm-specific color schemes */
+.realm-forest {
+  background: linear-gradient(135deg, #22543d 0%, #2f855a 100%);
+}
+
+.realm-mountain {
+  background: linear-gradient(135deg, #4a5568 0%, #718096 100%);
+}
+
+.realm-underworld {
+  background: linear-gradient(135deg, #742a2a 0%, #c53030 100%);
+}
+
+.realm-galaxy {
+  background: linear-gradient(135deg, #553c9a 0%, #805ad5 100%);
+}
+
+.realm-hub {
+  background: linear-gradient(135deg, #2b6cb0 0%, #3182ce 100%);
+}
+
+/* Rich text editor styles */
+.prose {
+  max-width: none;
+}
+
+.prose h1 {
+  @apply text-3xl font-bold text-white mb-4;
+}
+
+.prose h2 {
+  @apply text-2xl font-semibold text-gray-100 mb-3;
+}
+
+.prose h3 {
+  @apply text-xl font-medium text-gray-200 mb-2;
+}
+
+.prose p {
+  @apply text-gray-300 mb-4 leading-relaxed;
+}
+
+.prose ul, .prose ol {
+  @apply text-gray-300 mb-4 ml-6;
+}
+
+.prose li {
+  @apply mb-2;
+}
+
+.prose table {
+  @apply w-full border-collapse border border-gray-600 mb-4;
+}
+
+.prose th {
+  @apply bg-gray-700 text-white p-3 border border-gray-600 font-semibold;
+}
+
+.prose td {
+  @apply text-gray-300 p-3 border border-gray-600;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-blue-500 pl-4 italic text-gray-400 mb-4;
+}
+
+.prose pre {
+  @apply bg-gray-800 text-gray-300 p-4 rounded-lg overflow-x-auto mb-4;
+}
+
+.prose code {
+  @apply bg-gray-800 text-blue-400 px-2 py-1 rounded text-sm;
+}
+
+/* Loading states */
+.skeleton {
+  background: linear-gradient(90deg, rgba(255,255,255,0.1) 25%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0.1) 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Form styles */
+.form-input {
+  @apply w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all;
+}
+
+.form-textarea {
+  @apply w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-vertical min-h-[120px];
+}
+
+.form-select {
+  @apply w-full px-4 py-3 bg-gray-800 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all;
+}
+
+.btn-primary {
+  @apply px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-gray-600 hover:bg-gray-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:ring-offset-gray-900;
+}
+
+.btn-danger {
+  @apply px-6 py-3 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-gray-900;
+}
+
+.btn-success {
+  @apply px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition-colors focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-gray-900;
+}
+
+/* Badge styles */
+.badge {
+  @apply inline-flex items-center px-3 py-1 rounded-full text-sm font-medium;
+}
+
+.badge-blue {
+  @apply bg-blue-900 text-blue-200;
+}
+
+.badge-green {
+  @apply bg-green-900 text-green-200;
+}
+
+.badge-yellow {
+  @apply bg-yellow-900 text-yellow-200;
+}
+
+.badge-red {
+  @apply bg-red-900 text-red-200;
+}
+
+.badge-purple {
+  @apply bg-purple-900 text-purple-200;
+}
+
+.badge-gray {
+  @apply bg-gray-700 text-gray-300;
+}
+
+/* Responsive navigation */
+@media (max-width: 768px) {
+  .App .flex {
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  }
+  
+  .App .ml-64 {
+    margin-left: 0;
+  }
 }
 
-.App-link {
-    color: #61dafb;
+/* Custom focus styles for accessibility */
+.focus-outline {
+  @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* Smooth transitions */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
 }
